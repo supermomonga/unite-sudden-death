@@ -22,14 +22,10 @@
 "     THE SOFTWARE.
 " }}}
 
-
-" define source
-function! unite#sources#sudden-death#define()
-    return s:source
-endfunction
-
 " source
 let s:source = {"name" : "sudden-death"}
+
+" sudden-death
 function! s:source.change_candidates(args, context)
   let width = strlen(substitute(substitute(a:context.input, "[ -~｡-ﾟ]", 's', 'g'), "[^s]", 'mm', 'g')) / 2
   let top = '＿' . join(map(range(width + 2), '"人"'),'') . "＿\n"
