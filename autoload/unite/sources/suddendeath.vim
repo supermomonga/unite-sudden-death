@@ -23,7 +23,7 @@
 " }}}
 
 " define source
-function! unite#sources#sudden-death#define()
+function! unite#sources#suddendeath#define()
   return s:source
 endfunction
 
