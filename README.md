@@ -1,4 +1,4 @@
-# sudden-death.el
+# unite-sudden-death
 
     ＿人人人人人人＿  
     ＞　突然の死　＜  
@@ -10,4 +10,5 @@
 
 ## Usage
 Execute following command.
+
     :Unite sudden-death
