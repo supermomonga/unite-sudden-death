@@ -30,14 +30,24 @@ endfunction
 " source
 let s:source = {"name" : "sudden-death"}
 
+" 渡された文字列の横幅が全角文字で何文字相当かを返す
+function! s:str_to_mb_width(str)
+  return strlen(substitute(substitute(a:str, "[ -~｡-ﾟ]", 's', 'g'), "[^s]", 'mm', 'g')) / 2
+endfunction
+
+" 渡された文字列を突然の死なフキダシにして返す
+function! s:sudden_death(str)
+  let width = s:str_to_mb_width(a:str) + 2
+  let top = '＿' . join(map(range(width), '"人"'),'') . '＿'
+  let content = '＞　' . a:str . '　＜'
+  let bottom = '￣' . join(map(range(width), '"Ｙ"'),'') . '￣'
+  return join([top, content, bottom], "\n")
+endfunction
+
 " sudden-death
 function! s:source.change_candidates(args, context)
-  let width = strlen(substitute(substitute(a:context.input, "[ -~｡-ﾟ]", 's', 'g'), "[^s]", 'mm', 'g')) / 2 + 2
-  let top = '＿' . join(map(range(width), '"人"'),'') . "＿\n"
-  let content = '＞　' . a:context.input . "　＜\n"
-  let bottom = '￣' . join(map(range(width), '"Ｙ"'),'') . '￣'
   let list = [{
-        \"word" : top . content . bottom, 
+        \"word" : s:sudden_death(a:context.input)
         \"is_multiline" : 1,
         \"kind" : "word"
         \}]
