@@ -47,9 +47,9 @@ endfunction
 " sudden-death
 function! s:source.change_candidates(args, context)
   let list = [{
-        \"word" : s:sudden_death(a:context.input)
+        \"word" : s:sudden_death(a:context.input),
         \"is_multiline" : 1,
-        \"kind" : "word"
+        \"kind" : "word",
         \}]
   return list 
 endfunction
